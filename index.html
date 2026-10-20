@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Robles — Desarrollo de Sistemas ERP, Software de Alto Desempeño & Ciberseguridad Ética</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portafolio profesional de Alex Robles. Especialista en Desarrollo de Sistemas ERP, Software de Alto Desempeño, Sistemas Clínicos 3D, CRMs Automatizados y Auditoría de Ciberseguridad Ética. Latacunga, Ecuador.">
+    <meta name="author" content="Alex Robles">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://alexrobles.dev">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alexrobles.dev">
+    <meta property="og:title" content="Alex Robles — Desarrollo de Sistemas ERP & Software de Alto Desempeño">
+    <meta property="og:description" content="Sistemas en producción: ArcodentX (3D Odontograma), PideGo (Delivery), Raíces CRM, AnimexTV (+518K), Evefarma, SoulMind (Streaming).">
+    <meta property="og:locale" content="es_EC">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alex Robles — Desarrollador de Software & Auditor de Seguridad">
+    <meta name="twitter:description" content="Desarrollo de software de alta gama, sistemas 3D WebGL, PWAs offline-first y seguridad informática avalada.">
+
+    <!-- JSON-LD Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Alex Robles",
+      "jobTitle": "Senior Software Developer & Cybersecurity Auditor",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Latacunga",
+        "addressRegion": "Cotopaxi",
+        "addressCountry": "EC"
+      },
+      "email": "alexrobles897@gmail.com",
+      "telephone": "+593978940371",
+      "knowsAbout": ["Full Stack Development", "React", "Zustand", "Three.js", "Docker", "Ethical Hacking", "Google Apps Script", "Notion API", "SEO"]
+    }
+    </script>
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#07090e',
+                        surface: {
+                            50: '#1c2130',
+                            100: '#141824',
+                            200: '#0d111a',
+                            300: '#090c13',
+                            400: '#06080d'
+                        },
+                        accent: {
+                            cyan: '#06b6d4',
+                            teal: '#14b8a6',
+                            emerald: '#10b981',
+                            blue: '#3b82f6',
+                            indigo: '#6366f1',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            pink: '#ec4899',
+                            purple: '#a855f7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons & Three.js CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        /* Smooth, refined scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #07090e; }
+        ::-webkit-scrollbar-thumb { background: #1e2433; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+        /* Elegant card surface with dynamic spotlight */
+        .spotlight-card {
+            position: relative;
+            background: rgba(13, 17, 26, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.25rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(700px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(6, 182, 212, 0.08), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+
+        .spotlight-card:hover {
+            border-color: rgba(6, 182, 212, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7), 0 0 25px -8px rgba(6, 182, 212, 0.12);
+        }
+
+        /* Subtle engineering grid background */
+        .grid-pattern {
+            background-size: 48px 48px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+
+        /* Status dot pulse */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0.3; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .animate-ring { animation: pulse-ring 2.5s infinite ease-in-out; }
+
+        /* Gradient typography */
+        .text-gradient {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-void text-slate-200 font-sans antialiased selection:bg-cyan-500 selection:text-black overflow-x-hidden relative grid-pattern">
+
+    <!-- WebGL Ambient 3D Topology (Three.js) -->
+    <div id="three-viewport" class="fixed inset-0 pointer-events-none z-0 opacity-30"></div>
+
+    <!-- Soft Ambient Atmospheric Lighting -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-cyan-600/10 via-blue-700/5 to-transparent blur-[140px] pointer-events-none z-0"></div>
+
+    <!-- ================= TOP NAVIGATION DOCK ================= -->
+    <header class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-2xl bg-surface-300/85 backdrop-blur-2xl border border-white/10 shadow-xl shadow-black/60">
+            
+            <!-- Professional Monogram -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-xl bg-surface-100 border border-white/10 flex items-center justify-center font-mono font-bold text-xs tracking-tighter text-white group-hover:border-cyan-400 group-hover:text-cyan-400 transition-all">
+                    AR<span class="text-cyan-400">.</span>
+                </div>
+                <div>
+                    <div class="text-xs font-bold text-white tracking-tight flex items-center gap-2">
+                        Alex Robles
+                        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ring"></span> DISPONIBLE
+                        </span>
+                    </div>
+                    <p class="text-[10px] font-mono text-slate-400">Sistemas ERP • Software • Ciberseguridad</p>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+                <a href="#proyectos" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                    <span>Sistemas en Producción</span>
+                    <span class="px-1.5 py-0.2 rounded-full text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-800/60 font-mono">7 LIVE</span>
+                </a>
+                <a href="#seguridad" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Ciberseguridad
+                </a>
+                <a href="#competencias" class="hover:text-cyan-400 transition-colors">Stack Técnico</a>
+                <a href="#trayectoria" class="hover:text-cyan-400 transition-colors">Trayectoria</a>
+            </nav>
+
+            <!-- Direct Actions -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="copyToClipboard('alexrobles897@gmail.com', 'Correo copiado al portapapeles')" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-200 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white text-xs font-mono transition-all">
+                    <i data-lucide="copy" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span>Email</span>
+                </button>
+
+                <a href="https://wa.me/593978940371?text=Hola%20Alex,%20revis%C3%A9%20tu%20portafolio%20profesional%20y%20me%20gustar%C3%ADa%20conversar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-white hover:bg-slate-200 text-black font-semibold text-xs transition-all flex items-center gap-1.5 shadow-md shadow-white/10">
+                    <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                    <span>Contactar</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-28">
+
+        <!-- ================= HERO SECTION ================= -->
+        <section class="flex flex-col items-start pt-6 sm:pt-10">
+            
+            <!-- Accreditation & Status Pill -->
+            <div class="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-200/90 border border-white/10 text-xs font-mono mb-8">
+                <span class="flex items-center gap-1.5 text-emerald-400 font-medium">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ring"></span>
+                    DISPONIBLE PARA PROYECTOS & CONSULTORÍA
+                </span>
+                <span class="text-slate-600">•</span>
+                <span class="text-slate-300 flex items-center gap-1">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-400"></i> Aval Ministerio del Interior
+                </span>
+                <span class="text-slate-600">•</span>
+                <span class="text-slate-400">Latacunga, Cotopaxi 🇪🇨</span>
+            </div>
+
+            <!-- Main Engineering Title (Customized as requested) -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] max-w-5xl mb-6">
+                Desarrollo de Sistemas ERP, <br class="hidden sm:inline">
+                <span class="text-gradient">Software de Alto Desempeño</span> 
+                y Ciberseguridad Ética.
+            </h1>
+
+            <p class="text-slate-300 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-3xl mb-10 text-balance">
+                Desarrollador de software especializado en sistemas ERP empresariales, CRMs con automatización avanzada, plataformas clínicas con odontograma 3D, arquitecturas dockerizadas y aplicaciones web progresivas (PWAs). Con sólida trayectoria en auditorías de seguridad informática y gestión de comunidades masivas de más de <strong class="text-white font-semibold">518,000 seguidores</strong>.
+            </p>
+
+            <!-- Action CTAs -->
+            <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+                <a href="#proyectos" class="px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs tracking-wide transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+                    <i data-lucide="layers" class="w-4 h-4"></i>
+                    <span>Explorar 7 Sistemas en Producción</span>
+                </a>
+                
+                <a href="#seguridad" class="px-6 py-3.5 rounded-xl bg-surface-200 border border-white/10 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 font-mono text-xs font-medium transition-all flex items-center gap-2">
+                    <i data-lucide="shield" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Auditoría & Ciberseguridad</span>
+                </a>
+
+                <button onclick="copyToClipboard('alexrobles897@gmail.com', 'Correo copiado exitosamente')" class="px-5 py-3.5 rounded-xl bg-surface-300 border border-white/10 hover:border-white/20 text-slate-300 hover:text-white text-xs font-mono transition-all flex items-center gap-2">
+                    <i data-lucide="copy" class="w-4 h-4 text-cyan-400"></i>
+                    <span>alexrobles897@gmail.com</span>
+                </button>
+            </div>
+
+            <!-- Key Metric Indicators -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full mt-14 pt-8 border-t border-white/[0.08]">
+                <div class="p-4 rounded-xl bg-surface-300/60 border border-white/[0.06]">
+                    <div class="text-[11px] font-mono text-slate-400 uppercase">Proyectos en Vivo</div>
+                    <div class="text-2xl font-bold font-mono text-cyan-400 mt-1">7 Sistemas</div>
+                    <div class="text-[11px] text-emerald-400 mt-0.5">Despliegue Vercel Activo</div>
+                </div>
+                <div class="p-4 rounded-xl bg-surface-300/60 border border-white/[0.06]">
+                    <div class="text-[11px] font-mono text-slate-400 uppercase">Comunidad Gestionada</div>
+                    <div class="text-2xl font-bold font-mono text-white mt-1">+518,000</div>
+                    <div class="text-[11px] text-emerald-400 mt-0.5">Audiencia y Monetización</div>
+                </div>
+                <div class="p-4 rounded-xl bg-surface-300/60 border border-white/[0.06]">
+                    <div class="text-[11px] font-mono text-slate-400 uppercase">Sistemas Clínicos</div>
+                    <div class="text-2xl font-bold font-mono text-indigo-400 mt-1">3D WebGL</div>
+                    <div class="text-[11px] text-slate-400 mt-0.5">ArcodentX Odontograma</div>
+                </div>
+                <div class="p-4 rounded-xl bg-surface-300/60 border border-white/[0.06]">
+                    <div class="text-[11px] font-mono text-slate-400 uppercase">Ciberseguridad</div>
+                    <div class="text-2xl font-bold font-mono text-emerald-400 mt-1">Avalada</div>
+                    <div class="text-[11px] text-emerald-400 mt-0.5">Ministerio del Interior</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PRODUCTION SYSTEMS SHOWCASE WITH LIVE PREVIEWS ================= -->
+        <section id="proyectos" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-mono mb-2">
+                        <i data-lucide="globe" class="w-3.5 h-3.5"></i> SISTEMAS VERIFICADOS EN PRODUCCIÓN
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Portafolio de Soluciones Web</h2>
+                    <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+                        Cada proyecto incluye su enlace de producción en Vercel, arquitectura técnica y opción de vista previa interactiva.
+                    </p>
+                </div>
+                <div class="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ring"></span> 7 / 7 Sistemas Online
+                </div>
+            </div>
+
+            <!-- Bento Grid of Projects -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                <!-- 1. ARCODENTX: SISTEMA ODONTOLÓGICO 3D (Col 8) -->
+                <div class="md:col-span-8 spotlight-card p-6 sm:p-7 flex flex-col justify-between group">
+                    <div>
+                        <!-- Browser-like Window Header -->
+                        <div class="p-2.5 rounded-xl bg-surface-400 border border-white/10 flex items-center justify-between mb-5">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/70 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/70 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/70 inline-block"></span>
+                                <span class="text-[11px] font-mono text-slate-400 bg-surface-200/80 px-3 py-0.5 rounded-md border border-white/5 ml-2">
+                                    https://arcodentx.vercel.app/
+                                </span>
+                            </div>
+                            <span class="text-[10px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+                                3D INTERACTIVO
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono text-cyan-400">Salud Clínica & Odontología</span>
+                            <span class="text-xs font-mono text-emerald-400">● En Producción</span>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                            ArcodentX — Sistema Odontológico Integral con Odontograma en 3D
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-5">
+                            Software médico integral con gestión digital de historiales clínicos, agenda y visualización interactiva de odontograma dental en tres dimensiones para precisión diagnóstica y seguimiento del paciente.
+                        </p>
+
+                        <!-- Live 3D Tooth Simulator Canvas -->
+                        <div class="w-full h-44 rounded-xl bg-surface-400 border border-white/10 relative overflow-hidden flex items-center justify-center mb-5">
+                            <canvas id="tooth-canvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+                            <div class="absolute bottom-2.5 left-3 text-[10px] font-mono text-slate-400 bg-surface-300/90 px-2.5 py-1 rounded border border-white/10 flex items-center gap-1.5">
+                                <i data-lucide="rotate-3d" class="w-3.5 h-3.5 text-cyan-400"></i> Rotación 3D en tiempo real (Arrastra con el ratón)
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-surface-100 text-slate-300 border border-white/10">Three.js / WebGL</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-surface-100 text-cyan-300 border border-cyan-800/40">React + Zustand</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-surface-100 text-slate-300 border border-white/10">PostgreSQL</span>
+                            <span class="px-2.5 py-1 rounded text-xs font-mono bg-surface-100 text-slate-300 border border-white/10">Historiales Médicos</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-white/[0.08]">
+                        <a href="https://arcodentx.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition-all flex items-center gap-1.5 shadow-md shadow-cyan-500/20">
+                            <span>Abrir ArcodentX</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <button onclick="openLivePreviewModal('ArcodentX 3D', 'https://arcodentx.vercel.app/')" class="px-4 py-2.5 rounded-xl bg-surface-100 hover:bg-surface-50 border border-white/10 text-slate-300 hover:text-white text-xs font-mono transition-all flex items-center gap-1.5">
+                            <i data-lucide="eye" class="w-3.5 h-3.5 text-cyan-400"></i>
+                            <span>Vista Previa del Sitio</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. SOULMIND: PLATAFORMA DE STREAMING MUSICAL (Col 4 - Updated as requested) -->
+                <div class="md:col-span-4 spotlight-card p-6 sm:p-7 flex flex-col justify-between group">
+                    <div>
+                        <!-- Browser Header -->
+                        <div class="p-2 rounded-xl bg-surface-400 border border-white/10 flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70"></span>
+                                <span class="text-[10px] font-mono text-slate-400 ml-1 truncate max-w-[130px]">
+                                    soullmind.vercel.app
+                                </span>
+                            </div>
+                            <span class="text-[9px] font-mono text-purple-300 bg-purple-950/60 px-1.5 py-0.5 rounded border border-purple-800/40">
+                                MÚSICA & AUDIO
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-mono text-purple-400">Streaming & Entretenimiento</span>
+                            <i data-lucide="music" class="w-4 h-4 text-purple-400"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                            SoulMind — Plataforma Web de Streaming Musical
+                        </h3>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Aplicación web de música con experiencia interactiva estilo Spotify. Reproductor de streaming en tiempo real, gestión de biblioteca personal, listas de reproducción y catálogo de canciones.
+                        </p>
+
+                        <!-- Simulated Music Player UI Mockup -->
+                        <div class="p-3.5 rounded-xl bg-surface-400 border border-white/10 space-y-2.5 mb-5 font-mono text-xs">
+                            <div class="flex items-center justify-between text-slate-300">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded bg-purple-600/30 border border-purple-500/40 flex items-center justify-center text-purple-300">
+                                        <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-[11px] font-bold text-white">Reproduciendo Audio</div>
+                                        <div class="text-[10px] text-slate-400">Catálogo SoulMind</div>
+                                    </div>
+                                </div>
+                                <span class="text-purple-400 text-[10px] animate-pulse">STREAMING</span>
+                            </div>
+                            <!-- Audio bar -->
+                            <div class="w-full bg-surface-100 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-purple-500 to-cyan-400 h-full w-[65%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">Next.js</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-purple-300">Web Audio API</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">Supabase</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-2">
+                        <a href="https://soullmind.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs transition-all flex items-center gap-1.5">
+                            <span>Abrir SoulMind</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <button onclick="openLivePreviewModal('SoulMind Streaming', 'https://soullmind.vercel.app/')" class="p-2 rounded-xl bg-surface-100 hover:bg-surface-50 border border-white/10 text-slate-300 hover:text-white text-xs font-mono" title="Vista Previa">
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. PIDEGO DELIVERY (Col 4) -->
+                <div class="md:col-span-4 spotlight-card p-6 sm:p-7 flex flex-col justify-between group">
+                    <div>
+                        <div class="p-2 rounded-xl bg-surface-400 border border-white/10 flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70"></span>
+                                <span class="text-[10px] font-mono text-slate-400 ml-1">pidego-*.vercel.app</span>
+                            </div>
+                            <span class="text-[9px] font-mono text-blue-300 bg-blue-950/60 px-1.5 py-0.5 rounded border border-blue-800/40">
+                                DOCKER / LIVE
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-mono text-blue-400">Logística & Entregas</span>
+                            <i data-lucide="navigation" class="w-4 h-4 text-blue-400"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                            PideGo — Plataforma Delivery en Tiempo Real
+                        </h3>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Ecosistema de pedidos y seguimiento logístico con geolocalización. Desplegado con arquitectura de contenedores Docker y doble interfaz para clientes y comercios.
+                        </p>
+
+                        <!-- Multi-App Access Buttons -->
+                        <div class="space-y-2 mb-5 text-xs font-mono">
+                            <a href="https://pidego-cliente.vercel.app/" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-surface-400 border border-white/10 hover:border-blue-400/50 flex items-center justify-between text-slate-300 hover:text-white transition-all">
+                                <span class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-ring"></span> PideGo Cliente (PWA)
+                                </span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5 text-blue-400"></i>
+                            </a>
+                            <a href="https://pidego-comercio.vercel.app/login" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-surface-400 border border-white/10 hover:border-cyan-400/50 flex items-center justify-between text-slate-300 hover:text-white transition-all">
+                                <span class="flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span> PideGo Comercio (Login B2B)
+                                </span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5 text-cyan-400"></i>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">Docker</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">WebSockets</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-blue-300">GPS Live</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                        <button onclick="openLivePreviewModal('PideGo Cliente', 'https://pidego-cliente.vercel.app/')" class="text-xs font-mono text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                            <i data-lucide="eye" class="w-3.5 h-3.5"></i> Vista Previa Cliente
+                        </button>
+                        <span class="text-[11px] font-mono text-slate-500">Producción</span>
+                    </div>
+                </div>
+
+                <!-- 4. ANIMEXTV: STREAMING & MONETIZACIÓN (Col 4) -->
+                <div class="md:col-span-4 spotlight-card p-6 sm:p-7 flex flex-col justify-between group">
+                    <div>
+                        <div class="p-2 rounded-xl bg-surface-400 border border-white/10 flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70"></span>
+                                <span class="text-[10px] font-mono text-slate-400 ml-1">animextv.vercel.app</span>
+                            </div>
+                            <span class="text-[9px] font-mono text-pink-300 bg-pink-950/60 px-1.5 py-0.5 rounded border border-pink-800/40">
+                                +518K USUARIOS
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-mono text-pink-400">PWA Streaming & SEO</span>
+                            <i data-lucide="trending-up" class="w-4 h-4 text-pink-400"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">
+                            AnimexTV — Contenido, PWA & Monetización
+                        </h3>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Plataforma progresiva de contenido con notificaciones móviles, estado con Zustand, observabilidad con Sentry y monetización mediante Google AdSense con tráfico masivo.
+                        </p>
+
+                        <div class="p-3 rounded-xl bg-surface-400 border border-white/10 space-y-1 mb-5 text-xs font-mono">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Audiencia Activa:</span>
+                                <span class="text-white font-bold">+518,000 seguidores</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>Google AdSense:</span>
+                                <span class="text-emerald-400 font-bold">Monetizado Activo</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">PWA</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-pink-300">Zustand</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">AdSense</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                        <a href="https://animextv.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-pink-500 hover:bg-pink-400 text-white font-semibold text-xs transition-all flex items-center gap-1.5">
+                            <span>Abrir AnimexTV</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <button onclick="openLivePreviewModal('AnimexTV Streaming', 'https://animextv.vercel.app/')" class="p-2 rounded-xl bg-surface-100 hover:bg-surface-50 border border-white/10 text-slate-300 hover:text-white" title="Vista Previa">
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5. RAÍCES CRM: AUTOMATIZACIÓN INMOBILIARIA (Col 4) -->
+                <div class="md:col-span-4 spotlight-card p-6 sm:p-7 flex flex-col justify-between group">
+                    <div>
+                        <div class="p-2 rounded-xl bg-surface-400 border border-white/10 flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70"></span>
+                                <span class="text-[10px] font-mono text-slate-400 ml-1">raicescrm.vercel.app</span>
+                            </div>
+                            <span class="text-[9px] font-mono text-amber-300 bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-800/40">
+                                AUTOMATIZACIÓN
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-mono text-amber-400">Sector Inmobiliario</span>
+                            <i data-lucide="workflow" class="w-4 h-4 text-amber-400"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                            Raíces CRM — Automatización de Cobranzas
+                        </h3>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Arquitectura CRM para gestión de compras a crédito. Flujos automáticos de avisos de mora programados y notificaciones integrando Notion API con Google Apps Script.
+                        </p>
+
+                        <div class="p-3 rounded-xl bg-surface-400 border border-white/10 space-y-1.5 mb-5 text-xs font-mono">
+                            <div class="flex items-center gap-1.5 text-slate-300">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Notion Webhooks Pipeline
+                            </div>
+                            <div class="flex items-center gap-1.5 text-emerald-400 pl-3 border-l border-amber-500/30">
+                                ↳ Apps Script: Alerta de Mora Automática
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">Apps Script</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-amber-300">Notion API</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">Finanzas</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                        <a href="https://raicescrm.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-semibold text-xs transition-all flex items-center gap-1.5">
+                            <span>Abrir Raíces CRM</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <button onclick="openLivePreviewModal('Raíces CRM', 'https://raicescrm.vercel.app/')" class="p-2 rounded-xl bg-surface-100 hover:bg-surface-50 border border-white/10 text-slate-300 hover:text-white" title="Vista Previa">
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 6. EVEFARMA: SALUD & FARMACÉUTICA (Col 4) -->
+                <div class="md:col-span-4 spotlight-card p-6 sm:p-7 flex flex-col justify-between group">
+                    <div>
+                        <div class="p-2 rounded-xl bg-surface-400 border border-white/10 flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70"></span>
+                                <span class="text-[10px] font-mono text-slate-400 ml-1">evefarma.vercel.app</span>
+                            </div>
+                            <span class="text-[9px] font-mono text-emerald-300 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">
+                                FARMACIA DIGITAL
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-mono text-emerald-400">Salud & Catálogo</span>
+                            <i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                            Evefarma — Gestión Farmacéutica Digital
+                        </h3>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Plataforma de catálogo médico y gestión farmacéutica. Control de stock en tiempo real, trazabilidad de medicamentos y experiencia de usuario optimizada para dispensación médica.
+                        </p>
+
+                        <div class="p-3 rounded-xl bg-surface-400 border border-white/10 space-y-1 mb-5 text-xs font-mono">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Inventario:</span>
+                                <span class="text-emerald-400 font-bold">Tiempo Real</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>Catálogo:</span>
+                                <span class="text-white">Búsqueda Reactiva</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">React</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-emerald-300">Farmacéutica</span>
+                            <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-surface-100 text-slate-300">E-Commerce</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+                        <a href="https://evefarma.vercel.app/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs transition-all flex items-center gap-1.5">
+                            <span>Abrir Evefarma</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <button onclick="openLivePreviewModal('Evefarma', 'https://evefarma.vercel.app/')" class="p-2 rounded-xl bg-surface-100 hover:bg-surface-50 border border-white/10 text-slate-300 hover:text-white" title="Vista Previa">
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= CIBERSEGURIDAD & AUDITORÍA PROFESIONAL ================= -->
+        <section id="seguridad" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800/50 text-emerald-300 text-xs font-mono mb-2">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> SEGURIDAD DE LA INFORMACIÓN & AVAL OFICIAL
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Ciberseguridad & Auditoría Ética</h2>
+                    <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+                        Diagnóstico integral de vulnerabilidades en infraestructura web y radiofrecuencia bajo estándares OWASP y con credencial avalada por el Ministerio del Interior.
+                    </p>
+                </div>
+                <div class="px-3.5 py-2 rounded-xl bg-surface-200 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i> Credencial Ministerio del Interior Avalada
+                </div>
+            </div>
+
+            <!-- Terminal HUD Window -->
+            <div class="rounded-2xl bg-surface-400 border border-white/10 overflow-hidden shadow-xl">
+                <!-- Mac-like Header -->
+                <div class="bg-surface-300 px-4 py-3 border-b border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                        <span class="ml-2 font-mono text-xs text-slate-400">
+                            alexrobles@audit-lab:~ (diagnóstico de sistemas y redes)
+                        </span>
+                    </div>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-800/60">
+                        SISTEMA ACTIVO
+                    </span>
+                </div>
+
+                <!-- Dynamic Logs -->
+                <div class="p-6 font-mono text-xs sm:text-sm space-y-3.5 max-h-[350px] overflow-y-auto" id="sec-terminal-body">
+                    <div class="text-slate-400">
+                        [#] INICIALIZANDO CONSOLA DE AUDITORÍA Y TELEMETRÍA DE SEGURIDAD...
+                    </div>
+                    <div class="text-cyan-400">
+                        [+] Evaluación OWASP Top 10: Detección preventiva de inyecciones SQL y sanitización en Supabase/PostgreSQL <span class="text-emerald-400">[MITIGADO]</span>.
+                    </div>
+                    <div class="text-emerald-400">
+                        [+] Auditoría de Redes Inalámbricas: Hardware especializado Alfa en modo monitor e inyección de paquetes para pruebas de estrés.
+                    </div>
+                    <div class="text-amber-400">
+                        [+] Marco Legal & Acreditación: Credencial oficial de Seguridad y Vigilancia avalada por el Ministerio del Interior de Ecuador.
+                    </div>
+                    <div class="pt-2 border-t border-white/10 flex items-center gap-2 text-slate-300">
+                        <span class="text-cyan-400">alexrobles:~$</span>
+                        <input type="text" id="sec-input" class="bg-transparent outline-none border-none text-white w-full font-mono text-xs sm:text-sm" placeholder="Escribe 'proyectos', 'escanear', 'normativa', 'hardware'..." autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- Command Chips -->
+                <div class="bg-surface-300/80 px-4 py-3 border-t border-white/10 flex flex-wrap items-center gap-2 text-xs font-mono">
+                    <span class="text-slate-500 mr-2 text-[11px]">Comandos rápidos:</span>
+                    <button onclick="execSecCmd('proyectos')" class="px-2.5 py-1 rounded bg-surface-100 hover:bg-surface-50 text-cyan-400 transition-colors">proyectos</button>
+                    <button onclick="execSecCmd('escanear')" class="px-2.5 py-1 rounded bg-surface-100 hover:bg-surface-50 text-emerald-400 transition-colors">escanear</button>
+                    <button onclick="execSecCmd('normativa')" class="px-2.5 py-1 rounded bg-surface-100 hover:bg-surface-50 text-purple-400 transition-colors">normativa</button>
+                    <button onclick="execSecCmd('hardware')" class="px-2.5 py-1 rounded bg-surface-100 hover:bg-surface-50 text-amber-400 transition-colors">hardware</button>
+                    <button onclick="execSecCmd('clear')" class="px-2.5 py-1 rounded bg-surface-100 hover:bg-red-950/60 text-slate-400 hover:text-red-400 transition-colors ml-auto">limpiar</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= STACK TÉCNICO Y COMPETENCIAS ================= -->
+        <section id="competencias" class="space-y-8">
+            <div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-mono mb-2">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5"></i> ARSENAL TECNOLÓGICO
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Competencias & Tecnologías</h2>
+                <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+                    Herramientas aplicadas en producción para garantizar interfaces veloces, arquitecturas escalables y protección de datos.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Stack 1 -->
+                <div class="p-6 rounded-2xl bg-surface-300/80 border border-white/10 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400">
+                            <i data-lucide="layout" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Frontend & 3D Web</h3>
+                            <p class="text-[11px] font-mono text-slate-400">React, Zustand & Three.js</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>JavaScript (ES6+) / TypeScript</span> <span class="text-cyan-400">Avanzado</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>React & Zustand</span> <span class="text-cyan-400">Estado Global</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Three.js / WebGL</span> <span class="text-purple-400">Odontograma 3D</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>PWAs (Offline-First)</span> <span class="text-emerald-400">Notificaciones</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Lazy Loading & Performance</span> <span class="text-slate-400">100/100 SEO</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Stack 2 -->
+                <div class="p-6 rounded-2xl bg-surface-300/80 border border-white/10 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-400">
+                            <i data-lucide="server" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Backend, Datos & DevOps</h3>
+                            <p class="text-[11px] font-mono text-slate-400">Bases de datos & Contenedores</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Docker & Microservicios</span> <span class="text-blue-400">PideGo Delivery</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Node.js / Express</span> <span class="text-emerald-400">APIs REST</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>PostgreSQL & Supabase</span> <span class="text-cyan-400">Relacional</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>MongoDB / Firebase</span> <span class="text-amber-400">Storage & Cloud</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Despliegues en Vercel & Render</span> <span class="text-slate-400">CI/CD</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Stack 3 -->
+                <div class="p-6 rounded-2xl bg-surface-300/80 border border-white/10 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-purple-500/10 text-purple-400">
+                            <i data-lucide="shield" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Seguridad & Crecimiento</h3>
+                            <p class="text-[11px] font-mono text-slate-400">Auditoría, SEO & Monetización</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Kali Linux & Parrot OS</span> <span class="text-red-400">Pentesting</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Auditoría WiFi (Modo Monitor)</span> <span class="text-emerald-400">Hardware Alfa</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Notion API + Apps Script</span> <span class="text-amber-400">Raíces CRM</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Sentry (Monitoreo de Errores)</span> <span class="text-yellow-400">0 Errores</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2.5 rounded-lg bg-surface-400 border border-white/[0.05]">
+                            <span>Google AdSense & SEO</span> <span class="text-pink-400">+518K Comunidad</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= TRAYECTORIA PROFESIONAL ================= -->
+        <section id="trayectoria" class="space-y-8">
+            <div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/50 text-cyan-300 text-xs font-mono mb-2">
+                    <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> EXPERIENCIA
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Trayectoria Profesional</h2>
+            </div>
+
+            <div class="space-y-6">
+
+                <div class="p-7 rounded-2xl bg-surface-300/70 border border-white/10 hover:border-white/20 transition-all">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Desarrollador de Software y Especialista Multimedia</h3>
+                            <div class="text-xs font-mono text-cyan-400">Freelance & Proyectos Especializados</div>
+                        </div>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-surface-100 border border-white/10 text-slate-300 w-fit">
+                            Activo
+                        </span>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed list-disc list-inside">
+                        <li>Arquitectura y desarrollo de <strong class="text-white">ArcodentX</strong> con odontograma interactivo en 3D para clínicas.</li>
+                        <li>Desarrollo de <strong class="text-white">SoulMind</strong>, plataforma de streaming musical y catálogo de audio interactivo.</li>
+                        <li>Construcción de la plataforma logística <strong class="text-white">PideGo</strong> con microservicios en Docker y geolocalización.</li>
+                        <li>Auditorías éticas de vulnerabilidades web (SQLi) y análisis de radiofrecuencia WiFi con hardware especializado.</li>
+                    </ul>
+                </div>
+
+                <div class="p-7 rounded-2xl bg-surface-300/70 border border-white/10 hover:border-white/20 transition-all">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Especialista en CRM e Integraciones</h3>
+                            <div class="text-xs font-mono text-amber-400">Sector Inmobiliario — Raíces CRM</div>
+                        </div>
+                        <span class="text-xs font-mono px-3 py-1 rounded-full bg-surface-100 border border-white/10 text-slate-300 w-fit">
+                            Producción
+                        </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Arquitectura integral de CRM para la gestión de compras a crédito. Automatización de cronogramas, avisos de mora programados y notificaciones a clientes mediante la API de Notion y Google Apps Script.
+                    </p>
+                </div>
+
+                <div class="p-7 rounded-2xl bg-surface-300/70 border border-white/10 hover:border-white/20 transition-all">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Especialista en Monetización, SEO y Soporte Web</h3>
+                            <div class="text-xs font-mono text-pink-400">Comunidades Masivas (+518,000 Miembros)</div>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-1">
+                        Administración y escalamiento de comunidades con más de 518,000 seguidores, implementando estrategias de monetización con Google AdSense y protección contra infracciones de copyright.
+                    </p>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Optimización rigurosa de SEO técnico con Google Search Console y Google Analytics para mejorar la indexación y visibilidad orgánica.
+                    </p>
+                </div>
+
+                <div class="p-7 rounded-2xl bg-surface-300/70 border border-white/10 hover:border-white/20 transition-all">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Asistente de Producción y Comunicación</h3>
+                            <div class="text-xs font-mono text-purple-400">GAD Parroquial — Morona Santiago</div>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Cobertura audiovisual, edición técnica de material institucional y difusión estratégica en canales de comunicación pública.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FORMACIÓN & CERTIFICACIONES ================= -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="p-7 rounded-2xl bg-surface-300/70 border border-white/10">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Formación Académica</h3>
+                </div>
+                <div class="space-y-3 font-mono text-xs">
+                    <div class="p-3.5 rounded-xl bg-surface-400 border border-white/[0.06]">
+                        <div class="text-white font-bold">Ingeniería de Software</div>
+                        <div class="text-cyan-400 mt-0.5">Estudiante en curso • Metodologías Ágiles (Agile & Scrum)</div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-surface-400 border border-white/[0.06]">
+                        <div class="text-white font-bold">Contabilidad</div>
+                        <div class="text-slate-400 mt-0.5">Educación Secundaria • Gestión Financiera & Flujos de Caja</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-7 rounded-2xl bg-surface-300/70 border border-white/10">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Acreditaciones & Idiomas</h3>
+                </div>
+                <div class="space-y-3 font-mono text-xs">
+                    <div class="p-3.5 rounded-xl bg-surface-400 border border-white/[0.06]">
+                        <div class="text-white font-bold">Seguridad y Vigilancia</div>
+                        <div class="text-emerald-400 mt-0.5">Credencial Oficial avalada por el Ministerio del Interior de Ecuador</div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-surface-400 border border-white/[0.06]">
+                        <div class="text-white font-bold">Idiomas</div>
+                        <div class="text-slate-400 mt-0.5">Español (Nativo) | Inglés: Nivel A1 (Básico / Lectura técnica)</div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTACTO PROFESIONAL ================= -->
+        <section id="contacto" class="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-surface-200 to-surface-400 border border-white/15 relative overflow-hidden shadow-2xl">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 text-xs font-mono text-cyan-300 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ring"></span>
+                    INICIAR CONVERSACIÓN PROFESIONAL
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+                    ¿Conversamos sobre tu próximo proyecto?
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+                    Disponible para desarrollo de software full stack, aplicaciones web 3D interactivas, integración de CRMs automatizados y auditorías de seguridad ética.
+                </p>
+
+                <!-- Contact Grid -->
+                <div class="flex flex-wrap items-center gap-3 mb-8">
+                    <a href="https://wa.me/593978940371?text=Hola%20Alex,%20revis%C3%A9%20tus%20sistemas%20en%20producci%C3%B3n%20y%20quisiera%20conversar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>WhatsApp: 0978940371</span>
+                    </a>
+
+                    <button onclick="copyToClipboard('alexrobles897@gmail.com', 'Correo alexrobles897@gmail.com copiado')" class="px-5 py-3 rounded-xl bg-surface-100 hover:bg-surface-50 border border-white/10 text-white font-mono text-xs transition-all flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4 text-cyan-400"></i>
+                        <span>alexrobles897@gmail.com</span>
+                    </button>
+
+                    <div class="px-4 py-3 rounded-xl bg-surface-300 border border-white/10 text-slate-300 font-mono text-xs flex items-center gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-cyan-400"></i>
+                        <span>Latacunga, Cotopaxi 🇪🇨</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER (Formato serio, formal y limpio sin texto innecesario) ================= -->
+    <footer class="border-t border-white/[0.08] bg-void py-8 px-4 text-xs text-slate-400">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white">Alex Robles</span>
+                <span class="text-slate-600">—</span>
+                <span class="text-slate-400">Desarrollador de Software & Especialista en Ciberseguridad</span>
+            </div>
+            <div class="flex items-center gap-4 text-slate-500 font-mono text-[11px]">
+                <span>Latacunga, Ecuador</span>
+                <span>•</span>
+                <span>© <span id="year-label"></span> Todos los derechos reservados</span>
+                <span>•</span>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-cyan-400 transition-colors">Volver Arriba ↑</button>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================= LIVE PREVIEW MODAL (Vista previa interactiva de la URL del proyecto) ================= -->
+    <div id="preview-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-2 sm:p-6" onclick="closeLivePreviewModalOnBackdrop(event)">
+        <div class="max-w-5xl w-full h-[90vh] rounded-2xl bg-surface-300 border border-cyan-500/40 shadow-2xl flex flex-col overflow-hidden" onclick="event.stopPropagation()">
+            <!-- Browser Header Bar -->
+            <div class="bg-surface-400 px-4 py-3 border-b border-white/10 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-2">
+                    <button onclick="closeLivePreviewModal()" class="w-3 h-3 rounded-full bg-red-500 hover:opacity-80 transition-opacity" title="Cerrar"></button>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                    <span id="preview-modal-title" class="ml-2 font-bold text-xs text-white"></span>
+                </div>
+
+                <!-- URL Bar Display -->
+                <div class="hidden sm:flex items-center gap-2 bg-surface-200 px-4 py-1.5 rounded-lg border border-white/10 text-xs font-mono text-slate-300 max-w-md w-full truncate">
+                    <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i>
+                    <span id="preview-modal-url" class="truncate"></span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <a id="preview-modal-external-link" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center gap-1.5">
+                        <span>Abrir en Pestaña</span>
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <button onclick="closeLivePreviewModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Frame Container with Lazy Loading -->
+            <div class="flex-1 w-full h-full bg-black relative flex items-center justify-center">
+                <div id="preview-loader" class="absolute flex flex-col items-center gap-2 text-xs font-mono text-slate-400">
+                    <i data-lucide="loader-2" class="w-6 h-6 animate-spin text-cyan-400"></i>
+                    <span>Cargando vista previa interactiva...</span>
+                </div>
+                <iframe id="preview-iframe" class="w-full h-full border-none relative z-10" loading="lazy" onload="hidePreviewLoader()"></iframe>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Toast Notification -->
+    <div id="toast-pill" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none px-4 py-2.5 rounded-xl bg-surface-100 border border-cyan-500/40 text-cyan-300 font-mono text-xs flex items-center gap-2 shadow-2xl">
+        <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toast-text">Notificación</span>
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        lucide.createIcons();
+        document.getElementById('year-label').textContent = new Date().getFullYear();
+
+        // Spotlight Mouse Effect on Cards
+        document.querySelectorAll('.spotlight-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Toast feedback
+        function showToast(msg) {
+            const toast = document.getElementById('toast-pill');
+            document.getElementById('toast-text').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        function copyToClipboard(text, msg) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(msg || "Copiado al portapapeles");
+            }).catch(() => {
+                showToast(text);
+            });
+        }
+
+        // ================= THREE.JS BACKGROUND TOPOLOGY =================
+        function initBackground3D() {
+            const container = document.getElementById('three-viewport');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            const geo = new THREE.IcosahedronGeometry(4.5, 3);
+            const mat = new THREE.MeshBasicMaterial({
+                color: 0x06b6d4,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.12
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            scene.add(mesh);
+
+            const count = 200;
+            const pGeo = new THREE.BufferGeometry();
+            const pos = new Float32Array(count * 3);
+            for(let i = 0; i < count * 3; i += 3) {
+                pos[i] = (Math.random() - 0.5) * 18;
+                pos[i+1] = (Math.random() - 0.5) * 18;
+                pos[i+2] = (Math.random() - 0.5) * 18;
+            }
+            pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            const pMat = new THREE.PointsMaterial({
+                size: 0.05,
+                color: 0x3b82f6,
+                transparent: true,
+                opacity: 0.5
+            });
+            const particles = new THREE.Points(pGeo, pMat);
+            scene.add(particles);
+
+            camera.position.z = 8;
+
+            let mouseX = 0, mouseY = 0;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) - 0.5;
+                mouseY = (e.clientY / window.innerHeight) - 0.5;
+            });
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                mesh.rotation.x += 0.0008;
+                mesh.rotation.y += 0.0012;
+                particles.rotation.y -= 0.0006;
+
+                camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.04;
+                camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.04;
+                camera.lookAt(scene.position);
+
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+        initBackground3D();
+
+
+        // ================= ODONTOGRAM 3D CANVAS (ARCODENTX) =================
+        function initToothCanvas() {
+            const canvas = document.getElementById('tooth-canvas');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const crownGeo = new THREE.CylinderGeometry(1.2, 0.9, 1.4, 8, 4);
+            const rootGeo = new THREE.ConeGeometry(0.9, 1.8, 8);
+            rootGeo.translate(0, -1.5, 0);
+
+            const crownMat = new THREE.MeshStandardMaterial({
+                color: 0x06b6d4,
+                wireframe: true,
+                emissive: 0x06b6d4,
+                emissiveIntensity: 0.25
+            });
+
+            const toothGroup = new THREE.Group();
+            const crown = new THREE.Mesh(crownGeo, crownMat);
+            const root = new THREE.Mesh(rootGeo, crownMat);
+            toothGroup.add(crown);
+            toothGroup.add(root);
+            scene.add(toothGroup);
+
+            const light = new THREE.DirectionalLight(0xffffff, 1.5);
+            light.position.set(2, 4, 3);
+            scene.add(light);
+            scene.add(new THREE.AmbientLight(0x404040));
+
+            camera.position.z = 5;
+
+            let isDragging = false;
+            let prevMouseX = 0;
+
+            canvas.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                prevMouseX = e.clientX;
+            });
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const delta = e.clientX - prevMouseX;
+                    toothGroup.rotation.y += delta * 0.02;
+                    prevMouseX = e.clientX;
+                }
+            });
+
+            function renderTooth() {
+                requestAnimationFrame(renderTooth);
+                if (!isDragging) {
+                    toothGroup.rotation.y += 0.008;
+                }
+                renderer.render(scene, camera);
+            }
+            renderTooth();
+
+            window.addEventListener('resize', () => {
+                if (!canvas.clientWidth) return;
+                camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            });
+        }
+        setTimeout(initToothCanvas, 250);
+
+
+        // ================= LIVE PREVIEW MODAL LOGIC =================
+        function openLivePreviewModal(title, url) {
+            const modal = document.getElementById('preview-modal');
+            const iframe = document.getElementById('preview-iframe');
+            const titleEl = document.getElementById('preview-modal-title');
+            const urlEl = document.getElementById('preview-modal-url');
+            const extLink = document.getElementById('preview-modal-external-link');
+            const loader = document.getElementById('preview-loader');
+
+            titleEl.textContent = title;
+            urlEl.textContent = url;
+            extLink.href = url;
+            loader.style.display = 'flex';
+            iframe.src = url;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLivePreviewModal() {
+            const modal = document.getElementById('preview-modal');
+            const iframe = document.getElementById('preview-iframe');
+            iframe.src = '';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeLivePreviewModalOnBackdrop(e) {
+            if (e.target.id === 'preview-modal') {
+                closeLivePreviewModal();
+            }
+        }
+
+        function hidePreviewLoader() {
+            const loader = document.getElementById('preview-loader');
+            if (loader) loader.style.display = 'none';
+        }
+
+
+        // ================= SECURITY TERMINAL LOGIC =================
+        const secInput = document.getElementById('sec-input');
+        const secTerminalBody = document.getElementById('sec-terminal-body');
+
+        const secCommands = {
+            proyectos: `[+] LISTADO DE SISTEMAS EN PRODUCCIÓN:
+1. ArcodentX 3D     -> https://arcodentx.vercel.app/ (Odontología 3D)
+2. PideGo Cliente   -> https://pidego-cliente.vercel.app/ (Delivery en tiempo real)
+3. PideGo Comercio  -> https://pidego-comercio.vercel.app/login (Portal B2B)
+4. Raíces CRM       -> https://raicescrm.vercel.app/ (Automatización de cobranzas)
+5. AnimexTV PWA     -> https://animextv.vercel.app/ (+518K audiencia & AdSense)
+6. Evefarma         -> https://evefarma.vercel.app/ (Gestión farmacéutica digital)
+7. SoulMind         -> https://soullmind.vercel.app/ (Streaming musical interactivo)`,
+
+            escanear: `[+] Verificación de seguridad en dominios y servicios:
+[+] Protocolo HTTPS / SSL: Certificados TLS 1.3 verificados y activos.
+[+] Encabezados de Seguridad: HSTS, CSP y protección contra framing habilitados.
+[+] Supabase / PostgreSQL: Consultas preparadas contra inyección SQL [PROTEGIDO].
+[✓] Diagnóstico: Infraestructura blindada y conforme a normativas OWASP.`,
+
+            normativa: `[+] MARCO LEGAL Y AVAL INSTITUCIONAL:
+• Acreditación oficial: Seguridad y Vigilancia avalada por el Ministerio del Interior.
+• Metodología de auditoría: Pruebas éticas de penetración (Ethical Hacking).
+• Protección de datos: Implementación de mejores prácticas para sistemas clínicos y CRMs.`,
+
+            hardware: `[+] HARDWARE ESPECIALIZADO DE AUDITORÍA:
+• Adaptador Alfa Network AWUS036ACH (Soporte modo monitor & inyección).
+• Bandas: 2.4 GHz y 5.0 GHz simultáneas para auditoría de protocolos 802.11.
+• Distribuciones operativas: Kali Linux y Parrot Security OS.`
+        };
+
+        function execSecCmd(cmd) {
+            const clean = cmd.trim().toLowerCase();
+            if (!clean) return;
+
+            const echo = document.createElement('div');
+            echo.className = "text-slate-400";
+            echo.innerHTML = `<span class="text-cyan-400">alexrobles:~$</span> <span class="text-white">${clean}</span>`;
+            secTerminalBody.insertBefore(echo, secInput.parentElement);
+
+            if (clean === 'clear' || clean === 'limpiar') {
+                secTerminalBody.innerHTML = `
+                    <div class="text-slate-400">[#] Consola reinicializada...</div>
+                    <div class="pt-2 border-t border-white/10 flex items-center gap-2 text-slate-300">
+                        <span class="text-cyan-400">alexrobles:~$</span>
+                        <input type="text" id="sec-input" class="bg-transparent outline-none border-none text-white w-full font-mono text-xs sm:text-sm" placeholder="Escribe 'proyectos', 'escanear', 'normativa', 'hardware'..." autocomplete="off">
+                    </div>
+                `;
+                document.getElementById('sec-input').addEventListener('keydown', handleSecKeyDown);
+                return;
+            }
+
+            const res = document.createElement('div');
+            res.className = "text-slate-300 pl-2 border-l border-emerald-500/50 my-1 text-xs";
+            if (secCommands[clean]) {
+                res.innerHTML = secCommands[clean].replace(/\n/g, '<br>');
+            } else {
+                res.innerHTML = `<span class="text-red-400">Comando '${clean}' no reconocido.</span> Prueba: <span class="text-cyan-400 font-bold">'proyectos'</span>, <span class="text-cyan-400 font-bold">'escanear'</span>, <span class="text-cyan-400 font-bold">'normativa'</span>, <span class="text-cyan-400 font-bold">'hardware'</span>.`;
+            }
+
+            secTerminalBody.insertBefore(res, secInput.parentElement);
+            secTerminalBody.scrollTop = secTerminalBody.scrollHeight;
+            secInput.value = '';
+        }
+
+        function handleSecKeyDown(e) {
+            if (e.key === 'Enter') {
+                execSecCmd(e.target.value);
+            }
+        }
+        secInput.addEventListener('keydown', handleSecKeyDown);
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLivePreviewModal();
+            }
+        });
+    </script>
+</body>
+</html>
